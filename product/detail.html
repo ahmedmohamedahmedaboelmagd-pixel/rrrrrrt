@@ -6,14 +6,13 @@
     <title>تفاصيل المنتج</title>
     <link rel="stylesheet" href="../css/styles.css">
     <style>
-        /* ... (الأنماط الداخلية الموجودة سابقاً) ... */
+        /* أنماط أساسية موحدة للصفحة */
         body {
             background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
             font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             padding: 0;
             direction: rtl; 
-            text-align: center; /* لتوسيط المحتوى الذي سيتم حقنه */
         }
         header {
             background: #2563eb;
@@ -43,7 +42,7 @@
             background: #1e40af;
         }
         main {
-            max-width: 800px;
+            max-width: 900px;
             margin: 40px auto;
             background: #fff;
             border-radius: 16px;
@@ -51,23 +50,12 @@
             padding: 32px;
             text-align: right;
         }
-        /* أنماط تفاصيل المنتج المحقونة من JS */
-        .product-detail {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        footer {
             text-align: center;
-            padding: 10px;
-        }
-        .product-detail img {
-            max-width: 100%;
-            height: 300px; /* حجم ثابت للصور */
-            object-fit: cover;
-            border-radius: 18px;
-            box-shadow: 0 4px 12px rgba(37,99,235,0.15);
-            border: 4px solid #e0e7ff;
-            margin-bottom: 25px;
-            background: #fff;
+            padding: 20px;
+            color: #64748b;
+            margin-top: 40px;
+            font-size: 0.9em;
         }
     </style>
 </head>
@@ -85,15 +73,48 @@
         </nav>
     </header>
     <main>
-        <section id="product-details">
-            <div style="text-align:center; padding: 50px; color: #475569;">
-                 جارٍ تحميل تفاصيل المنتج...
+        <section id="product-details"></section>
+        
+        <div class="divider"></div>
+        <section id="review-section">
+            <h2 class="section-title">⭐ تقييم المنتج ومراجعات العملاء</h2>
+            
+            <div class="review-form-container">
+                <h3>أضف تقييمك</h3>
+                <form id="review-form">
+                    <div class="rating-stars" id="rating-stars">
+                        <span data-rating="5">★</span>
+                        <span data-rating="4">★</span>
+                        <span data-rating="3">★</span>
+                        <span data-rating="2">★</span>
+                        <span data-rating="1">★</span>
+                        <input type="hidden" id="user-rating" name="rating" value="0">
+                    </div>
+                    <textarea id="review-comment" placeholder="اكتب تعليقك هنا..." required></textarea>
+                    <button type="submit" class="submit-review-btn">إرسال التقييم</button>
+                    <div id="review-message" class="message-area"></div>
+                </form>
+            </div>
+            
+            <div class="comments-list-container">
+                <h3>جميع المراجعات (<span id="review-count">0</span>)</h3>
+                <div id="comments-list">
+                    <p style="text-align: center; color: #64748b;">لا توجد مراجعات حتى الآن. كن أول من يقيّم هذا المنتج!</p>
+                </div>
             </div>
         </section>
+
+        <div class="divider"></div>
+        <section id="related-products-section">
+            <h2 class="section-title">🔗 منتجات ذات صلة</h2>
+            <div id="related-products-list" class="product-list">
+                </div>
+        </section>
+
     </main>
     <footer>
         <p>&copy; 2023 متجر على الإنترنت. جميع الحقوق محفوظة.</p>
     </footer>
-    <script src="../js/product.js"></script> 
+    <script src="../js/product.js"></script>
 </body>
 </html>
