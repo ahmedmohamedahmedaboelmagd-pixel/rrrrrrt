@@ -151,13 +151,7 @@ nav a:hover {
     background: #fff;
 }
 
-.product-item h3 {
-    font-size: 1.2em;
-    margin: 10px 0;
-    color: #2563eb;
-}
-/* تم تعديل هذا النمط في ملف electronics.html ليصبح h3 بدلاً من h2 */
-.product-item h2 { 
+.product-item h3, .product-item h2 { 
     font-size: 1.2em;
     margin: 10px 0;
     color: #2563eb;
@@ -251,7 +245,6 @@ nav a:hover {
     margin-top: 24px;
 }
 /* أنماط صفحة الأقسام الجانبية */
-/* تم تغيير اسم class من .container إلى .container.with-sidebar ليتناسب مع HTML*/
 .container.with-sidebar {
     display: flex;
     max-width: 900px;
@@ -354,7 +347,7 @@ footer, .footer {
         text-align: right; 
     }
     .sidebar ul {
-        display: flex; /* لعرض الروابط أفقياً */
+        display: flex; 
         flex-wrap: wrap;
         gap: 10px;
         padding: 0 10px;
@@ -368,7 +361,7 @@ footer, .footer {
         padding: 8px 15px;
         border-radius: 6px;
         border: 1px solid #cbd5e1;
-        text-align: right;
+        text-align: center; /* تم تعديلها لتظهر في المنتصف بشكل أفضل */
     }
 }
 
@@ -378,16 +371,19 @@ footer, .footer {
         padding: 20px 0 10px 0;
     }
     nav ul {
-        flex-direction: column; 
-        gap: 8px;
-        align-items: center;
+        /* التعديلات المطلوبة: جعل القائمة أفقية ومتجاوبة */
+        flex-direction: row; 
+        flex-wrap: wrap; 
+        gap: 10px;
+        justify-content: center;
         margin: 10px 0 10px 0;
     }
     nav a {
-        display: block;
+        display: inline-block; /* التعديل لتمكين الروابط من الظهور جنبًا إلى جنب */
         padding: 8px 15px;
-        width: 80%; 
+        width: auto; /* التعديل لإلغاء العرض الثابت والسماح لها بالظهور أفقيًا */
         text-align: center;
+        font-size: 1em;
     }
     
     .product-list {
@@ -432,11 +428,11 @@ footer, .footer {
     }
     
     .container.with-sidebar .sidebar ul {
-        flex-direction: column;
+        flex-direction: row; /* التأكيد على الاتجاه الأفقي */
         align-items: center;
     }
     .container.with-sidebar .sidebar li a {
-        width: 90%;
+        width: auto; /* عرض تلقائي */
         text-align: center;
     }
 }
