@@ -14,12 +14,14 @@ function getProductIdFromURL() {
 
 // الدالة المسؤولة عن جلب المنتج من ملف JSON والبحث عنه
 function fetchProductDetails(productId) {
-    // المسار: detail.html (في product/) يبحث عن products.json (في الجذر)
-    fetch('../products.json') 
+    // المسار من صفحة detail.html (الموجودة في product/) إلى products.json (الموجود في المجلد الرئيسي)
+    const jsonPath = '../products.json'; 
+    
+    fetch(jsonPath) 
         .then(response => {
             if (!response.ok) {
-                // إذا لم يتم العثور على الملف (بسبب مشكلة CORS أو المسار)
-                throw new Error('فشل في جلب البيانات. تأكد من تشغيل خادم محلي.');
+                // رسالة خطأ واضحة في حالة فشل الاتصال
+                throw new Error('فشل جلب ملف المنتجات (products.json).');
             }
             return response.json();
         })
@@ -29,7 +31,7 @@ function fetchProductDetails(productId) {
             // البحث عن المنتج في جميع الفئات المُخزنة في JSON
             for (const category in productsByCat) {
                 if (Array.isArray(productsByCat[category])) {
-                    // نستخدم .find() لإيجاد أول منتج يطابق المعرف (p1, p2, إلخ)
+                    // نستخدم .find() للبحث عن المنتج المطابق للمعرف
                     const foundProduct = productsByCat[category].find(p => p.id === productId); 
                     if (foundProduct) {
                         product = foundProduct;
@@ -41,21 +43,23 @@ function fetchProductDetails(productId) {
             if (product) {
                 displayProductDetails(product);
             } else {
-                displayNotFound();
+                displayNotFound('عفواً، لا يوجد منتج بهذا المعرف في المتجر.');
             }
         })
         .catch(error => {
             console.error('Error fetching product details:', error);
-            displayNotFound(error.message);
+            // عرض رسالة خطأ واضحة في حالة فشل الجلب (CORS)
+            displayNotFound(
+                `فشل في تحميل المنتجات: ${error.message}. <br>الرجاء التأكد من تشغيل الموقع عبر **خادم محلي** (مثل Live Server).`
+            );
         });
 }
 
 function displayProductDetails(product) {
     const productContainer = document.getElementById('product-details');
 
-    // استخدام الفئات (Classes) التي أضفناها لـ styles.css لتجنب الكود الأحمر
     const name = product.name || "اسم المنتج غير متوفر";
-    // عرض السعر كوحدة الجنيه المصري (ج.م) كما هو موجود في بياناتك
+    // عرض السعر بوحدة الجنيه المصري (ج.م)
     const price = product.price ? parseFloat(product.price).toFixed(2) + ' ج.م' : "السعر غير متوفر";
     const description = product.desc || "لا يوجد وصف متوفر لهذا المنتج حالياً.";
     const imagePath = product.image || 'https://via.placeholder.com/400x400?text=Image+Not+Found';
@@ -76,7 +80,7 @@ function displayProductDetails(product) {
         </div>
     `;
     
-    // 2. منطق الإضافة إلى السلة 
+    // منطق الإضافة إلى السلة 
     const addBtn = document.getElementById('addToCartBtn');
     if (addBtn) {
         const cartProduct = {
@@ -98,7 +102,6 @@ function displayProductDetails(product) {
             }
             localStorage.setItem('cart', JSON.stringify(cart));
             
-            // رد فعل واجهة المستخدم
             addBtn.textContent = "تمت الإضافة!";
             addBtn.style.background = "#059669";
             setTimeout(() => {
@@ -109,12 +112,12 @@ function displayProductDetails(product) {
     }
 }
 
-function displayNotFound(errorMessage = 'عذراً، المنتج الذي تبحث عنه غير متوفر حالياً.') {
+function displayNotFound(message) {
     const productContainer = document.getElementById('product-details');
     productContainer.innerHTML = `
         <div style="text-align:center; padding:40px;">
             <h2 style="color:#dc2777;">المنتج غير موجود</h2>
-            <p style="color:#334155;">${errorMessage}</p>
+            <p style="color:#334155; max-width: 500px; margin: 15px auto; line-height: 1.6;">${message}</p>
         </div>
     `;
 }
