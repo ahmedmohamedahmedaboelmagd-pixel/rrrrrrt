@@ -1,174 +1,388 @@
-/* قائمة منسدلة عمودية */
-.dropdown-content {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: #fff;
-    min-width: 180px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
-    border-radius: 8px;
-    padding: 0;
-    margin: 0;
-    z-index: 1000;
-}
-.dropdown-content li {
-    width: 100%;
-}
-.dropdown-content a {
-    display: block;
-    padding: 14px 18px;
-    color: #0f172a;
-    font-size: 1.08em;
-    text-decoration: none;
-    transition: background 0.2s;
-}
-.dropdown-content a:hover {
-    background: #e0e7ff;
-    color: #2563eb;
-}
+/* This file contains the CSS styles for the entire project, including layout, typography, and responsive design. */
 
-/* الأنماط العامة (شاشات الكمبيوتر) */
+/* --- الأنماط الأساسية --- */
+
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
     padding: 0;
     background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
     min-height: 100vh;
-    direction: rtl; 
-    text-align: right;
+    direction: rtl; /* دعم الاتجاه من اليمين لليسار */
 }
 
 header {
     background: #2563eb;
     color: #fff;
-    padding: 28px 0 16px 0;
+    padding: 24px 0 16px 0;
     text-align: center;
-    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
-    border-bottom-left-radius: 18px;
-    border-bottom-right-radius: 18px;
-}
-
-nav {
-    margin: 20px 0 0 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 nav ul {
     list-style: none;
     padding: 0;
-    margin: 0 0 16px 0;
+    margin: 0 0 12px 0;
     display: flex;
     justify-content: center;
-    gap: 32px;
+    gap: 20px; /* تم تعديل المسافة بناءً على الترتيب الجديد */
+    flex-wrap: wrap; 
 }
 
-nav a {
+nav ul li {
+    margin: 5px 0;
+}
+
+nav ul li a {
     color: #fff;
     text-decoration: none;
-    padding: 10px 18px;
     font-weight: 500;
-    font-size: 1.1em;
+    font-size: 1.05em;
+    padding: 7px 16px;
     border-radius: 6px;
     transition: background 0.2s;
 }
 
-nav a:hover {
+nav ul li a:hover {
     background: #1e40af;
 }
 
-.container, main, .policy-main {
-    max-width: 900px;
+main {
+    max-width: 1200px;
     margin: 40px auto;
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 4px 24px rgba(37,99,235,0.08);
-    padding: 40px 32px;
+    padding: 0 20px;
 }
 
-/* أنماط صفحة الإدارة (Admin) */
-.admin-container {
-    max-width: 500px;
-    margin: 60px auto;
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #2563eb;
+    color: #fff;
+    margin-top: 40px;
+}
+
+/* --- أنماط قسم المنتجات المميزة (التمرير الأفقي) --- */
+
+.horizontal-scroll-section {
+    margin-bottom: 50px;
+}
+
+.scroll-container-wrapper {
+    position: relative;
+    padding: 0 50px; /* لترك مساحة للأزرار */
+}
+
+.featured-scroll-list {
+    display: flex;
+    overflow-x: scroll; /* تمكين التمرير الأفقي بالماوس/اللمس */
+    gap: 20px;
+    padding: 15px 0;
+    scrollbar-width: none; /* إخفاء شريط التمرير لمتصفحات فايرفوكس */
+    -ms-overflow-style: none; /* إخفاء شريط التمرير لمتصفحات IE و Edge */
+}
+
+/* إخفاء شريط التمرير لمتصفحات WebKit (Chrome, Safari) */
+.featured-scroll-list::-webkit-scrollbar {
+    display: none;
+}
+
+.featured-item {
+    flex: 0 0 auto; /* منع العناصر من التمدد/الانكماش */
+    width: 200px; /* عرض ثابت لكل عنصر */
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: #0f172a;
+}
+
+.featured-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(37,99,235,0.15);
+}
+
+.featured-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.featured-item h3 {
+    font-size: 1.1em;
+    margin: 8px 0;
+    color: #2563eb;
+}
+
+.featured-item .price {
+    font-weight: 700;
+    color: #059669;
+}
+
+
+/* --- أنماط أزرار التمرير (الأسهم) --- */
+
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.6em;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.2s, transform 0.2s;
+}
+
+.scroll-btn:hover {
+    background: #1e40af;
+    transform: translateY(-50%) scale(1.05);
+}
+/* زر الرجوع (يشير لليسار) يوضع على اليمين في RTL */
+.right-btn { 
+    right: 0; 
+}
+
+/* زر التقدم (يشير لليمين) يوضع على اليسار في RTL */
+.left-btn { 
+    left: 0; 
+}
+
+/* --- أنماط قائمة "الكل" الجديدة (القائمة الجانبية المنزلقة Off-Canvas) --- */
+
+/* التعتيم على الخلفية */
+#sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1999;
+    display: none; /* يتم إظهاره بواسطة JavaScript */
+}
+
+/* القائمة الجانبية المنزلقة (The Drawer Menu) */
+#sidebar-menu {
+    /* أساسيات القائمة الجانبية */
+    position: fixed;
+    top: 0;
+    right: 0; /* يبدأ من أقصى اليمين */
+    height: 100%;
+    width: 280px; /* عرض القائمة */
+    max-width: 85%; /* لضمان التجاوب على الجوال */
+    background: #fff;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    
+    /* إخفاؤها خارج الشاشة */
+    transform: translateX(100%); 
+    transition: transform 0.3s ease-out;
+    
+    padding: 20px 0;
+    margin: 0;
+    display: flex; 
+    flex-direction: column;
+}
+
+/* حالة الفتح (يتم تطبيقها بواسطة JavaScript) */
+#sidebar-menu.open {
+    transform: translateX(0);
+}
+
+/* زر الإغلاق */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 50%;
+    font-size: 1.8em;
+    color: #dc2626;
+    cursor: pointer;
+    line-height: 1;
+    padding: 5px 12px;
+    z-index: 2001;
+    transition: background 0.2s;
+}
+
+/* تنسيق العناوين داخل القائمة الجانبية */
+#sidebar-menu h2 {
+    color: #2563eb;
+    text-align: right;
+    padding: 0 25px 15px;
+    margin-top: 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* تنسيق قائمة الروابط */
+#sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+}
+
+#sidebar-menu ul li a {
+    color: #0f172a;
+    text-decoration: none;
+    padding: 15px 25px;
+    display: block;
+    font-weight: 500;
+    font-size: 1.1em;
+    transition: background 0.2s, color 0.2s;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+#sidebar-menu ul li a:hover {
+    background: #e0e7ff;
+    color: #2563eb;
+}
+
+/* --- أنماط قسم المنتجات المفصلة (جديد المتجر) --- */
+
+.product-list-detailed {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.product-item-detailed {
+    display: flex;
+    flex-direction: column;
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-    padding: 32px 28px;
-}
-.admin-container h1 {
-    color: #2563eb;
-    text-align: center;
-    margin-bottom: 32px;
-}
-.admin-container label {
-    display: block;
-    margin-bottom: 8px;
-    color: #334155;
-    font-weight: 500;
-}
-.admin-container input, 
-.admin-container select, 
-.admin-container textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    box-sizing: border-box; 
-    font-size: 1em;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s;
 }
 
-/* شبكة عرض المنتجات (التنسيق القديم - لا يزال يستخدم في صفحات أخرى) */
+.product-item-detailed:hover {
+    transform: translateY(-5px);
+}
+
+.product-image-detailed img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-info-detailed {
+    padding: 18px;
+    text-align: right;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-info-detailed h2 {
+    color: #2563eb;
+    font-size: 1.3em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.product-info-detailed .description {
+    color: #334155;
+    font-size: 0.95em;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.product-info-detailed .rating {
+    color: #f59e0b;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.price-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 15px;
+}
+
+.price-action .price {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #059669;
+}
+
+.view-details-btn {
+    background: #2563eb;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.view-details-btn:hover {
+    background: #1e40af;
+}
+
+/* --- أنماط القسم الفرعي للمنتجات (Product List) --- */
+
 .product-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 28px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
 }
 
 .product-item {
-    background: #f1f5f9;
-    border-radius: 14px;
-    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
-    padding: 24px 18px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
     text-align: center;
-    transition: transform 0.2s, box-shadow 0.2s;
-    position: relative;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
 }
 
 .product-item:hover {
-    transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 6px 24px rgba(37,99,235,0.10);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(37,99,235,0.1);
 }
 
 .product-item img {
-    width: 120px;
-    height: 120px;
+    width: 100%;
+    max-height: 180px;
     object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 14px;
-    box-shadow: 0 2px 8px rgba(37,99,235,0.10);
-    border: 3px solid #2563eb;
-    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 12px;
 }
 
-.product-item h3, .product-item h2 { 
-    font-size: 1.2em;
-    margin: 10px 0;
+.product-item h3 {
     color: #2563eb;
+    font-size: 1.2em;
+    margin-top: 0;
 }
 
 .product-item p {
-    font-size: 1em;
     color: #334155;
-    margin-bottom: 12px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
 }
 
 .product-item a {
     display: inline-block;
-    margin-top: 8px;
     background: #2563eb;
     color: #fff;
-    padding: 8px 20px;
+    padding: 10px 20px;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 500;
@@ -178,433 +392,4 @@ nav a:hover {
 
 .product-item a:hover {
     background: #1e40af;
-}
-
-.product-detail {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 32px;
-}
-
-.product-detail img {
-    max-width: 220px;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 18px;
-    box-shadow: 0 2px 12px rgba(37,99,235,0.10);
-    border: 4px solid #e0e7ff;
-    margin-bottom: 18px;
-    background: #fff;
-}
-
-.cart {
-    background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
-}
-
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
-    background: #f1f5f9;
-    padding: 12px;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(37,99,235,0.04);
-}
-
-/* أنماط صفحة السياسة */
-.policy-main {
-    max-width: 700px;
-    margin: 40px auto;
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-    padding: 32px;
-}
-.policy-main h1 {
-    color: #2563eb;
-    margin-bottom: 24px;
-    text-align: center;
-}
-.policy-main ul {
-    margin: 20px 0;
-    padding-right: 20px;
-}
-.policy-main li {
-    margin-bottom: 14px;
-    color: #334155;
-}
-.policy-main .note {
-    background: #f1f5f9;
-    padding: 16px;
-    border-radius: 8px;
-    color: #dc2626;
-    margin-top: 24px;
-}
-/* أنماط صفحة الأقسام الجانبية */
-.container.with-sidebar {
-    display: flex;
-    max-width: 900px;
-    margin: 40px auto;
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-    overflow: hidden;
-    padding: 0;
-}
-.sidebar {
-    width: 220px;
-    background: #f1f5f9;
-    padding: 32px 0;
-    border-left: 1px solid #e2e8f0;
-}
-.sidebar h2 {
-    color: #2563eb;
-    font-size: 1.2em;
-    margin-bottom: 18px;
-    padding: 0 20px;
-    text-align: center;
-}
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.sidebar li {
-    margin-bottom: 2px;
-}
-.sidebar li a {
-    display: block;
-    padding: 12px 20px;
-    color: #334155;
-    text-decoration: none;
-    font-size: 1.05em;
-    transition: background 0.2s, color 0.2s;
-}
-.sidebar li a:hover {
-    background: #e0e7ff;
-    color: #2563eb;
-}
-.main-content {
-    flex-grow: 1;
-    padding: 32px;
-}
-
-/* Footer Styles */
-footer, .footer {
-    text-align: center;
-    padding: 18px 0;
-    background: #e0e7ff;
-    color: #2563eb;
-    margin-top: 40px;
-    border-top: 1px solid #93c5fd;
-    font-size: 1em;
-    border-radius: 0 0 18px 18px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-
-/* --- أنماط المنتجات المميزة القابلة للتمرير الأفقي (جديد) --- */
-.horizontal-scroll-section {
-    width: 100%;
-    margin-bottom: 30px;
-}
-.featured-scroll-list {
-    display: flex;
-    overflow-x: auto; /* يجعل المحتوى قابلاً للتمرير أفقياً */
-    -webkit-overflow-scrolling: touch; /* لتحسين التمرير على iOS */
-    gap: 15px;
-    padding-bottom: 15px; /* مسافة لمنطقة التمرير */
-    scrollbar-width: none; /* إخفاء شريط التمرير لمتصفحات Firefox */
-}
-/* إخفاء شريط التمرير لمتصفحات Webkit (Chrome, Safari) */
-.featured-scroll-list::-webkit-scrollbar {
-    display: none;
-}
-
-.featured-item {
-    min-width: 160px; /* تحديد عرض ثابت لكل منتج */
-    max-width: 160px;
-    background: #fff;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    text-decoration: none;
-    transition: transform 0.2s;
-}
-
-.featured-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-}
-
-.featured-item img {
-    width: 100%;
-    max-width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    border: 2px solid #e0e7ff;
-}
-
-.featured-item h3 {
-    font-size: 1.1em;
-    color: #2563eb;
-    margin: 5px 0;
-}
-
-.featured-item .price {
-    font-weight: 700;
-    color: #059669;
-    margin-top: 5px;
-}
-
-/* --- أنماط القائمة بالتنسيق الجديد (صورة ووصف جانبي - جديد) --- */
-.product-list-detailed {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.product-item-detailed {
-    display: flex;
-    align-items: flex-start;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.product-image-detailed {
-    flex-shrink: 0; /* منع الصورة من الانكماش */
-    margin-left: 20px; /* مسافة بين الصورة والوصف */
-    border: 3px solid #e0e7ff;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.product-image-detailed img {
-    width: 150px; 
-    height: 150px;
-    display: block;
-    object-fit: cover;
-}
-
-.product-info-detailed {
-    flex-grow: 1;
-}
-
-.product-info-detailed h2 {
-    font-size: 1.5em;
-    color: #2563eb;
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-.product-info-detailed .description {
-    color: #475569;
-    margin-bottom: 10px;
-    font-size: 0.95em;
-}
-
-.product-info-detailed .rating {
-    color: #f59e0b;
-    font-weight: 600;
-    margin-bottom: 15px;
-    font-size: 0.9em;
-}
-
-.price-action {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 15px;
-}
-
-.price-action .price {
-    font-size: 1.4em;
-    font-weight: 700;
-    color: #dc2626;
-}
-
-.view-details-btn {
-    background: #059669;
-    color: #fff;
-    padding: 10px 18px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background 0.2s;
-}
-
-.view-details-btn:hover {
-    background: #047857;
-}
-
-
-/* ------------------------------------------- */
-/* أنماط التجاوب (Responsive Media Queries)      */
-/* ------------------------------------------- */
-
-/* شاشات الحاسوب اللوحي (Tablet - أقل من 1024 بكسل) */
-@media (max-width: 1024px) {
-    .product-list {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
-        gap: 20px;
-    }
-    .container, main, .policy-main {
-        max-width: 95%; 
-        padding: 30px 20px;
-        margin: 30px auto;
-    }
-    
-    .product-detail img {
-        max-width: 180px; 
-        height: 180px;
-    }
-
-    /* جعل الحاوية الجانبية (الأقسام) تتكدس */
-    .container.with-sidebar {
-        flex-direction: column;
-    }
-    .sidebar {
-        width: 100%;
-        padding: 20px 0;
-        border-left: none;
-        border-bottom: 1px solid #e2e8f0;
-    }
-    .main-content {
-        padding: 20px;
-    }
-    .sidebar h2 {
-        padding: 0 10px;
-        text-align: right; 
-    }
-    .sidebar ul {
-        display: flex; 
-        flex-wrap: wrap;
-        gap: 10px;
-        padding: 0 10px;
-        justify-content: center;
-    }
-    .sidebar li {
-        width: auto;
-        margin-bottom: 0;
-    }
-    .sidebar li a {
-        padding: 8px 15px;
-        border-radius: 6px;
-        border: 1px solid #cbd5e1;
-        text-align: center;
-    }
-}
-
-/* الهواتف الذكية (Mobile - أقل من 768 بكسل) */
-@media (max-width: 768px) {
-    header {
-        padding: 20px 0 10px 0;
-    }
-    
-    /* جعل قائمة التنقل الرئيسية أفقية ومتجاوبة (تم تلبية طلبك الأول) */
-    nav ul {
-        flex-direction: row; 
-        flex-wrap: wrap; 
-        gap: 10px;
-        justify-content: center;
-        margin: 10px 0 10px 0;
-        padding: 0 10px;
-    }
-    nav a {
-        display: inline-block; 
-        padding: 8px 15px;
-        width: auto; 
-        text-align: center;
-        font-size: 1em;
-        background: #1e40af; /* لجعل الروابط واضحة على الهاتف */
-    }
-    
-    .product-list {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 15px;
-    }
-    
-    /* تعديل تنسيق المنتجات الرئيسية ليصبح عموديًا على شاشات الهواتف الصغيرة (التنسيق الجديد) */
-    .product-item-detailed {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .product-image-detailed {
-        margin-left: 0;
-        margin-bottom: 15px;
-    }
-    .product-image-detailed img {
-        width: 120px; 
-        height: 120px;
-    }
-    .price-action {
-        flex-direction: column;
-        gap: 10px;
-    }
-    .price-action .price {
-        order: 2; 
-    }
-    .view-details-btn {
-        order: 1;
-        width: 100%;
-        text-align: center;
-    }
-    
-    .product-detail {
-        padding: 20px 10px;
-    }
-    
-    .product-item {
-        padding: 15px 10px;
-    }
-    
-    .admin-container { 
-        max-width: 95%;
-        padding: 20px;
-        margin: 20px auto;
-    }
-}
-
-/* الهواتف الصغيرة جداً (Tiny Mobile - أقل من 480 بكسل) */
-@media (max-width: 480px) {
-    .product-list {
-        /* عرض المنتجات تحت بعضها في شاشات الجوال الصغيرة */
-        grid-template-columns: 1fr;
-    }
-    .container, main, .policy-main {
-        padding: 15px 10px;
-        margin: 15px auto;
-    }
-    
-    .admin-container { 
-        padding: 15px;
-        margin: 10px auto;
-    }
-    
-    .product-item img {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .container.with-sidebar .sidebar ul {
-        flex-direction: row; 
-        align-items: center;
-    }
-    .container.with-sidebar .sidebar li a {
-        width: auto; 
-        text-align: center;
-    }
 }

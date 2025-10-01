@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar"> 
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,69 +7,161 @@
     <link rel="stylesheet" href="css/styles.css">
     </head>
 <body>
+    
+    <div id="sidebar-overlay" onclick="toggleSidebarMenu()"></div>
+
+    <div id="sidebar-menu" class="nav-dropdown-content">
+        <button class="close-btn" onclick="toggleSidebarMenu()">&times;</button>
+        <h2>جميع الأقسام</h2>
+        <ul>
+            <li><a href="category/electronics.html">الإلكترونيات</a></li>
+            <li><a href="category/clothing.html">الملابس</a></li>
+            <li><a href="category/health.html">الصحة</a></li>
+            <li><a href="category/beauty.html">الجمال</a></li>
+            <li><a href="category/home.html">المنزل</a></li>
+            <li><a href="category/sports.html">الرياضة</a></li>
+        </ul>
+    </div>
+    
     <header>
-        <h1>متجر على الإنترنت</h1>
         <nav>
             <ul>
+                
+                <li class="nav-dropdown" id="all-categories-link"> 
+                    <a href="#" class="dropbtn" onclick="toggleSidebarMenu(event)">الكل</a>
+                </li>
+
                 <li><a href="index.html">الرئيسية</a></li>
                 <li><a href="category/electronics.html">الإلكترونيات</a></li>
-                <li><a href="category/clothing.html">الملابس</a></li>
                 <li><a href="category/health.html">الصحة</a></li>
                 <li><a href="category/beauty.html">الجمال</a></li>
+                
                 <li><a href="cart/cart.html">السلة</a></li>
-                <li><a href="pages/New Text Document.html">الأقسام</a></li>
             </ul>
         </nav>
     </header>
-    <main class="container">
-        <section>
-            <h2>المنتجات المميزة</h2>
+    <main>
+        <section class="horizontal-scroll-section">
+            <h1 style="color: #2563eb; text-align: center; margin-bottom: 25px; font-size: 2.5em;">المنتجات المميزة</h1>
+            
+            <div class="scroll-container-wrapper">
+                
+                <button class="scroll-btn right-btn" onclick="scrollFeatured(-1)">&#9664;</button> 
+                
+                <div class="featured-scroll-list" id="featuredProducts">
+                    
+                    <a href="product/detail.html?id=p1" class="featured-item">
+                        <img src="images/product1.jpg" alt="سماعات لاسلكية">
+                        <h3>سماعات لاسلكية</h3>
+                        <p class="price">450 ج.م</p>
+                    </a>
+                    <a href="product/detail.html?id=p2" class="featured-item">
+                        <img src="images/product2.jpg" alt="قميص قطني">
+                        <h3>قميص قطني</h3>
+                        <p class="price">199 ج.م</p>
+                    </a>
+                    <a href="product/detail.html?id=p3" class="featured-item">
+                        <img src="images/product3.jpg" alt="لابتوب ألترا">
+                        <h3>لابتوب ألترا</h3>
+                        <p class="price">12,500 ج.م</p>
+                    </a>
+                    <a href="product/detail.html?id=p4" class="featured-item">
+                        <img src="images/product4.jpg" alt="عطر فاخر">
+                        <h3>عطر فاخر</h3>
+                        <p class="price">320 ج.م</p>
+                    </a>
+                    <a href="product/detail.html?id=p5" class="featured-item">
+                        <img src="images/product5.jpg" alt="ساعة يد ذكية">
+                        <h3>ساعة يد ذكية</h3>
+                        <p class="price">750 ج.م</p>
+                    </a>
+                    <a href="product/detail.html?id=p6" class="featured-item">
+                        <img src="images/product6.jpg" alt="كتاب إلكتروني">
+                        <h3>كتاب إلكتروني</h3>
+                        <p class="price">150 ج.م</p>
+                    </a>
+                    <a href="product/detail.html?id=p7" class="featured-item">
+                        <img src="images/product7.jpg" alt="نظارة شمسية">
+                        <h3>نظارة شمسية</h3>
+                        <p class="price">250 ج.م</p>
+                    </a>
+                </div>
+                
+                <button class="scroll-btn left-btn" onclick="scrollFeatured(1)">&#9654;</button>
+            </div>
+        </section>
+
+        <section class="product-list-detailed-section">
+            <h2 style="color: #2563eb; margin-bottom: 25px; font-size: 2.2em;">جديد المتجر</h2>
+            
+            <div id="latestProductsList" class="product-list-detailed">
+                
+                <article class="product-item-detailed">
+                    <div class="product-image-detailed">
+                        <img src="images/detailed-product-a.jpg" alt="مجموعة العناية بالبشرة">
+                    </div>
+                    <div class="product-info-detailed">
+                        <h2>مجموعة العناية بالبشرة</h2>
+                        <p class="description">مجموعة متكاملة للعناية اليومية بالبشرة، تحتوي على منظف، مرطب، وسيروم فيتامين سي.</p>
+                        <div class="rating">⭐⭐⭐⭐⭐ (25 تقييم)</div>
+                        <div class="price-action">
+                            <span class="price">599 ج.م</span>
+                            <a href="product/detail.html?id=detail-a" class="view-details-btn">عرض التفاصيل</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="product-item-detailed">
+                    <div class="product-image-detailed">
+                        <img src="images/detailed-product-b.jpg" alt="جهاز قياس الضغط">
+                    </div>
+                    <div class="product-info-detailed">
+                        <h2>جهاز قياس ضغط الدم</h2>
+                        <p class="description">جهاز رقمي دقيق وسهل الاستخدام لقياس ضغط الدم في المنزل، مع ذاكرة تخزين للقراءات السابقة.</p>
+                        <div class="rating">⭐⭐⭐⭐ (40 تقييم)</div>
+                        <div class="price-action">
+                            <span class="price">410 ج.م</span>
+                            <a href="product/detail.html?id=detail-b" class="view-details-btn">عرض التفاصيل</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+        
+        <section class="product-list-section">
+            <h2 style="color: #2563eb; margin-bottom: 25px; font-size: 2.2em; margin-top: 40px;">منتجات أخرى</h2>
             <div class="product-list">
                 <div class="product-item">
-                    <h3>Product 1</h3>
-                    <p>Description of Product 1</p>
-                    <a href="product/detail.html?id=p1">View Details</a>
-                </div>
-                <div class="product-item">
-                    <h3>Product 2</h3>
-                    <p>Description of Product 2</p>
-                    <a href="product/detail.html?id=p2">View Details</a>
-                </div>
-                <div class="product-item">
+                    <img src="images/product3.jpg" alt="Product 3">
                     <h3>Product 3</h3>
                     <p>Description of Product 3</p>
-                    <a href="product/detail.html?id=p3">View Details</a>
-                </div>
-                <div class="product-item">
+                    <a href="product/detail.html?id=p3">View Details</a> </div>
+            <div class="product-item">
+                    <img src="images/product3.jpg" alt="Product 3">
                     <h3>Product 3</h3>
                     <p>Description of Product 3</p>
-                    <a href="product/detail.html?id=p3">View Details</a>
-                </div>
-                <div class="product-item">
+                    <a href="product/detail.html?id=p3">View Details</a> </div>
+                    <div class="product-item">
+                    <img src="images/product3.jpg" alt="Product 3">
                     <h3>Product 3</h3>
                     <p>Description of Product 3</p>
-                    <a href="product/detail.html?id=p3">View Details</a>
-                </div>
-                <div class="product-item">
+                    <a href="product/detail.html?id=p3">View Details</a> </div>
+                    <div class="product-item">
+                    <img src="images/product3.jpg" alt="Product 3">
                     <h3>Product 3</h3>
                     <p>Description of Product 3</p>
-                    <a href="product/detail.html?id=p3">View Details</a>
-                </div>
-                <div class="product-item">
+                    <a href="product/detail.html?id=p3">View Details</a> </div>
+                    <div class="product-item">
+                    <img src="images/product3.jpg" alt="Product 3">
                     <h3>Product 3</h3>
                     <p>Description of Product 3</p>
-                    <a href="product/detail.html?id=p3">View Details</a>
-                </div>
-                <div class="product-item">
+                    <a href="product/detail.html?id=p3">View Details</a> </div>
+                    <div class="product-item">
+                    <img src="images/product3.jpg" alt="Product 3">
                     <h3>Product 3</h3>
                     <p>Description of Product 3</p>
-                    <a href="product/detail.html?id=p3">View Details</a>
-                </div>
-                <div class="product-item">
-                    <h3>Product 3</h3>
-                    <p>Description of Product 3</p>
-                    <a href="product/detail.html?id=p3">View Details</a>
-                </div>
+                    <a href="product/detail.html?id=p3">View Details</a> </div>
             </div>
             
         </section>

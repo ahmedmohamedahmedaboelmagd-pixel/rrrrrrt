@@ -13,6 +13,13 @@
             "price": 8111,
             "image": "po;",
             "desc": "op;o"
+        },
+        {
+            "id": "p3",
+            "name": "جهاز حامي",
+            "price": 150,
+            "image": "file:\/\/\/C:\/Users\/Mohamed%20Faisal\/Desktop\/New%20folder\/unnamed%20(3).png",
+            "desc": "فففف"
         }
     ],
     "clothing": [
