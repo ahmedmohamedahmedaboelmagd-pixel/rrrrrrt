@@ -24,7 +24,7 @@
         <section class="horizontal-scroll-section">
             <h1 style="color:#2563eb; margin-bottom: 20px; font-size: 1.8em; text-align: center;">منتجات إلكترونية مميزة</h1>
             <div id="featuredProductsContainer" class="featured-scroll-list">
-                </div>
+            </div>
         </section>
         
         <hr style="border: 0; height: 1px; background: #e0e7ff; margin: 40px 0;">
@@ -32,46 +32,72 @@
         <section>
             <h1 style="color:#2563eb; margin-bottom: 30px; font-size: 2.2em; text-align: center;">جميع منتجات الإلكترونيات</h1>
             <div id="electronicsProducts" class="product-list-detailed">
-                </div>
+                <div style="text-align: center; color: #64748b; width: 100%; padding: 40px;">جارٍ تحميل المنتجات...</div>
+            </div>
         </section>
-        
+
     </main>
+
     <footer>
         <p>&copy; 2023 متجر على الإنترنت. جميع الحقوق محفوظة.</p>
     </footer>
-    
+
+    <script src="../js/main.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchProductsAndRender();
-        });
+        // عرض منتجات الإلكترونيات من ملف products.json
 
-        function fetchProductsAndRender() {
-            // يتم جلب البيانات من products.json بشكل مؤقت لأن بياناتك لا تحتوي على صور حقيقية
-            // في مشروع حقيقي، ستحتاج إلى PHP لجلب البيانات من products.json
-            const productsData = {
-                "electronics": [
-                    { "id": "p1", "name": "شاحن جوال سريع", "price": 900, "image": "https://via.placeholder.com/100x100?text=Charger", "desc": "شاحن حائط بقوة 65 واط، يدعم الشحن السريع PD.", "rating": 4.5 },
-                    { "id": "p2", "name": "سماعات بلوتوث", "price": 8111, "image": "https://via.placeholder.com/100x100?text=Headphones", "desc": "سماعات رأس لاسلكية بخاصية عزل الضوضاء وعمر بطارية طويل.", "rating": 4.2 },
-                    { "id": "p3", "name": "باور بانك 20000", "price": 550, "image": "https://via.placeholder.com/100x100?text=Powerbank", "desc": "بنك طاقة بسعة 20000 مللي أمبير مع منفذين USB.", "rating": 4.7 },
-                    { "id": "p4", "name": "ماوس لاسلكي", "price": 150, "image": "https://via.placeholder.com/100x100?text=Mouse", "desc": "ماوس مريح لليد، دقة عالية واتصال لاسلكي مستقر.", "rating": 3.9 },
-                    { "id": "p5", "name": "لوحة مفاتيح ميكانيكية", "price": 1200, "image": "https://via.placeholder.com/100x100?text=Keyboard", "desc": "كيبورد احترافي للألعاب بكفاءة عالية وإضاءة RGB.", "rating": 4.8 },
-                    { "id": "p6", "name": "كاميرا ويب HD", "price": 300, "image": "https://via.placeholder.com/100x100?text=Webcam", "desc": "كاميرا بدقة 1080p مثالية للمكالمات والاجتماعات.", "rating": 4.1 },
-                    { "id": "p7", "name": "شاشة كمبيوتر 27 بوصة", "price": 4500, "image": "https://via.placeholder.com/100x100?text=Monitor", "desc": "شاشة بمعدل تحديث 144Hz، مثالية للمونتاج والألعاب.", "rating": 4.6 }
-                ]
-            };
-            const products = productsData.electronics || [];
+        // **********************************************
+        // ********** التعديل لمنع التخزين المؤقت **********
+        // **********************************************
+        function fetchElectronicsProducts() {
+            var list = document.getElementById('electronicsProducts');
+            
+            // الحل: إضافة متغير زمني (timestamp) لمنع المتصفح من استخدام نسخة مخزنة مؤقتاً
+            var cacheBuster = '?' + new Date().getTime(); 
+            // المسار من مجلد category/ إلى products.json مع متغير منع التخزين المؤقت
+            const jsonPath = '../products.json' + cacheBuster; 
+            
+            fetch(jsonPath) 
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error('فشل جلب ملف المنتجات (products.json).');
+                    }
+                    return response.json();
+                })
+                .then(function(productsByCat) {
+                    var products = productsByCat['electronics'] || [];
+                    
+                    if (!products.length) {
+                        list.innerHTML = '<div style="text-align:center; color:#64748b; width:100%; padding: 20px;">لا يوجد منتجات في قسم الإلكترونيات.</div>';
+                        // إفراغ قائمة المنتجات المميزة أيضًا
+                        document.getElementById('featuredProductsContainer').innerHTML = '';
+                        return;
+                    }
 
-            renderFeaturedProducts(products.slice(0, 6)); // عرض 6 منتجات في قسم التمرير
-            renderDetailedProducts(products); // عرض كل المنتجات في القائمة الرئيسية
+                    // عرض المنتجات المميزة (أول 5 منتجات)
+                    renderFeaturedProducts(products.slice(0, 5)); 
+                    
+                    // عرض جميع المنتجات بالتفصيل
+                    renderDetailedProducts(products); 
+
+                })
+                .catch(function(error) {
+                    console.error('Fetch Error:', error); 
+                    list.innerHTML = '<div style="text-align:center; color:#dc2626; width:100%; padding: 20px;">تعذر جلب المنتجات من السيرفر.</div>';
+                });
         }
-
+        // **********************************************
+        
+        window.addEventListener('DOMContentLoaded', fetchElectronicsProducts);
+        
+        // دالة عرض المنتجات المميزة (للتمرير الأفقي)
         function renderFeaturedProducts(products) {
             const container = document.getElementById('featuredProductsContainer');
             let html = '';
             products.forEach(p => {
                 html += `
                     <a href="../product/detail.html?id=${p.id}" class="featured-item">
-                        <img src="${p.image.replace('100x100', '150x150')}" alt="${p.name}">
+                        <img src="${p.image.replace('100x100', '150x150')}" alt="${p.name}" onerror="this.onerror=null;this.src='https://via.placeholder.com/150x150?text=Image+Not+Found'">
                         <h3>${p.name}</h3>
                         <div class="price">${p.price} ج.م</div>
                     </a>
@@ -80,6 +106,7 @@
             container.innerHTML = html;
         }
 
+        // دالة عرض جميع المنتجات بالتفصيل (للقائمة الرئيسية)
         function renderDetailedProducts(products) {
             const list = document.getElementById('electronicsProducts');
             let html = '';
@@ -87,12 +114,12 @@
                 html += `
                     <div class="product-item-detailed">
                         <div class="product-image-detailed">
-                            <img src="${p.image.replace('100x100', '180x180')}" alt="${p.name}">
+                            <img src="${p.image.replace('100x100', '180x180')}" alt="${p.name}" onerror="this.onerror=null;this.src='https://via.placeholder.com/180x180?text=Image+Not+Found'">
                         </div>
                         <div class="product-info-detailed">
                             <h2>${p.name}</h2>
                             <p class="description">${p.desc}</p>
-                            <div class="rating">تقييم: ${p.rating} نجوم</div>
+                            <div class="rating">تقييم: ${p.rating || 'غير متوفر'} نجوم</div>
                             <div class="price-action">
                                 <span class="price">${p.price} ج.م</span>
                                 <a href="../product/detail.html?id=${p.id}" class="view-details-btn">عرض التفاصيل</a>
