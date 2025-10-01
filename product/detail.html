@@ -1,11 +1,76 @@
 <!DOCTYPE html>
-<html lang="ar"> 
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تفاصيل المنتج</title>
     <link rel="stylesheet" href="../css/styles.css">
-    </head>
+    <style>
+        /* ... (الأنماط الداخلية الموجودة سابقاً) ... */
+        body {
+            background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl; 
+            text-align: center; /* لتوسيط المحتوى الذي سيتم حقنه */
+        }
+        header {
+            background: #2563eb;
+            color: #fff;
+            padding: 28px 0 16px 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05em;
+            padding: 7px 16px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        nav ul li a:hover {
+            background: #1e40af;
+        }
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 32px;
+            text-align: right;
+        }
+        /* أنماط تفاصيل المنتج المحقونة من JS */
+        .product-detail {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+        }
+        .product-detail img {
+            max-width: 100%;
+            height: 300px; /* حجم ثابت للصور */
+            object-fit: cover;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(37,99,235,0.15);
+            border: 4px solid #e0e7ff;
+            margin-bottom: 25px;
+            background: #fff;
+        }
+    </style>
+</head>
 <body>
     <header>
         <nav>
@@ -20,12 +85,15 @@
         </nav>
     </header>
     <main>
-        <section id="product-details" class="product-detail">
-            </section>
+        <section id="product-details">
+            <div style="text-align:center; padding: 50px; color: #475569;">
+                 جارٍ تحميل تفاصيل المنتج...
+            </div>
+        </section>
     </main>
-    <div class="footer">
+    <footer>
         <p>&copy; 2023 متجر على الإنترنت. جميع الحقوق محفوظة.</p>
-    </div>
-    <script src="../js/product.js"></script>
+    </footer>
+    <script src="../js/product.js"></script> 
 </body>
 </html>
