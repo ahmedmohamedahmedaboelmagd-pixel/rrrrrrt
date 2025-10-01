@@ -1,0 +1,43 @@
+{
+    "electronics": [
+        {
+            "id": "p1",
+            "name": "شاحن",
+            "price": 900,
+            "image": "جدجخمجحك",
+            "desc": "95854"
+        },
+        {
+            "id": "p2",
+            "name": "سماعات",
+            "price": 8111,
+            "image": "po;",
+            "desc": "op;o"
+        }
+    ],
+    "clothing": [
+        {
+            "id": "p1",
+            "name": "اير بودز",
+            "price": 88,
+            "image": "88",
+            "desc": "88"
+        },
+        {
+            "id": "p2",
+            "name": "شاحن",
+            "price": 88,
+            "image": "88",
+            "desc": "888"
+        }
+    ],
+    "beauty": [
+        {
+            "id": "p1",
+            "name": "اير بودز",
+            "price": 88,
+            "image": "88",
+            "desc": "88"
+        }
+    ]
+}

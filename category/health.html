@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ar"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Products - Online Store</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* ... (Your original CSS styles remain here) ... */
+        body {
+            background: linear-gradient(120deg, #f8fafc 0%, #bbf7d0 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+        }
+        header {
+            background: #059669;
+            color: #fff;
+            padding: 28px 0 16px 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(5,150,105,0.08);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05em;
+            padding: 7px 16px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        nav ul li a:hover {
+            background: #047857;
+        }
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: right;
+        }
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .product-item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            width: 300px;
+            text-align: center;
+        }
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .product-item h2 {
+            color: #059669;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+        .product-item p {
+            color: #475569;
+            margin-bottom: 15px;
+        }
+        .product-item a {
+            background: #059669;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+        .product-item a:hover {
+            background: #047857;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="file:///C:/Users/Mohamed%20Faisal/Desktop/ne%20w/nhcj/online-store/src/index.html">الرئيسية</a></li>
+                <li><a href="electronics.html">الكترونيات</a></li>
+                <li><a href="clothing.html">Clothing</a></li>
+                <li><a href="health.html">Health</a></li>
+                <li><a href="beauty.html">Beauty</a></li>
+                <li><a href="../cart/cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>منتجات الصحة والجمال </h1>
+        <section class="product-list">
+            <article class="product-item">
+                <img src="path/to/health-product1.jpg" alt="Health Product 1">
+                <h2>Health Product 1</h2>
+                <p>Description of Health Product 1.</p>
+                <a href="../product/detail.html?id=h1">View Details</a> </article>
+            <article class="product-item">
+                <img src="path/to/health-product2.jpg" alt="Health Product 2">
+                <h2>Health Product 2</h2>
+                <p>Description of Health Product 2.</p>
+                <a href="../product/detail.html?id=h2">View Details</a> </article>
+            <article class="product-item">
+                <img src="path/to/health-product3.jpg" alt="Health Product 3">
+                <h2>Health Product 3</h2>
+                <p>Description of Health Product 3.</p>
+                <a href="../product/detail.html?id=h3">View Details</a> </article>
+                <article class="product-item">
+                <img src="path/to/health-product5.jpg" alt="Health Product 5">
+                <h2>Health Product 5</h2>
+                <p>Description of Health Product 3.</p>
+                <a href="../product/detail.html?id=h5">View Details</a> </article>
+                <article class="product-item">
+                <img src="path/to/health-product5.jpg" alt="Health Product 5">
+                <h2>Health Product 4</h2>
+                <p>Description of Health Product 4.</p>
+                <a href="../product/detail.html?id=h4">View Details</a> </article>
+                
+            </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Online Store. All rights reserved.</p>
+    </footer>
+    <script src="../js/main.js"></script>
+</body>
+</html>

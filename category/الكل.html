@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>الأقسام</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+        }
+        .container {
+            display: flex;
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .sidebar {
+            width: 220px;
+            background: #f1f5f9;
+            padding: 32px 0 32px 0;
+            border-left: 1px solid #e2e8f0;
+        }
+        .sidebar h2 {
+            color: #2563eb;
+            font-size: 1.2em;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0 24px;
+        }
+        .sidebar li {
+            margin-bottom: 18px;
+            position: relative;
+        }
+        .sidebar a {
+            color: #0f172a;
+            text-decoration: none;
+            font-size: 1.05em;
+            transition: color 0.2s;
+            padding: 6px 0;
+            display: block;
+        }
+        .sidebar a:hover {
+            color: #2563eb;
+        }
+        /* القائمة المنسدلة */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 100%;
+            top: 0;
+            background: #fff;
+            min-width: 160px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            z-index: 10;
+            padding: 12px 0;
+            border: 1px solid #e2e8f0;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content a {
+            color: #0f172a;
+            padding: 8px 24px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.98em;
+            transition: background 0.2s, color 0.2s;
+        }
+        .dropdown-content a:hover {
+            background: #f1f5f9;
+            color: #2563eb;
+        }
+        .main-content {
+            flex: 1;
+            padding: 40px 32px;
+        }
+        .main-content h1 {
+            color: #2563eb;
+            margin-bottom: 24px;
+        }
+        .main-content p {
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>الأقسام</h2>
+            <ul>
+            <li class="dropdown">
+                <a href="../category/electronics.html">الإلكترونيات</a>
+                <div class="dropdown-content" style="left: auto; right: 100%; top: 0;">
+                <a href="../category/electronics.html" style="font-weight:bold; color:#2563eb; background:#e0e7ff; border-radius:6px; margin-bottom:8px;">جميع المنتجات</a>
+                <a href="../category/electronics-phones.html"><span style="margin-right:6px;">📱</span>هواتف</a>
+                <a href="../category/electronics-chargers.html"><span style="margin-right:6px;">🔌</span>شواحن</a>
+                <a href="../category/electronics-cases.html"><span style="margin-right:6px;">📦</span>جرابات</a>
+                <a href="../category/electronics-headphones.html"><span style="margin-right:6px;">🎧</span>سماعات</a>
+                <a href="../category/electronics-watches.html"><span style="margin-right:6px;">⌚</span>ساعات</a>
+                <a href="../category/electronics-accessories.html"><span style="margin-right:6px;">🧩</span>اكسسوارات أخرى</a>
+                </div>
+            </li>
+                    </div>
+                </li>
+                <li><a href="../category/clothing.html">الملابس</a></li>
+                <li><a href="../category/health.html">الصحة</a></li>
+                <li><a href="../category/beauty.html">الجمال</a></li>
+                <li><a href="../category/home.html">المنزل</a></li>
+                <li><a href="../category/sports.html">الرياضة</a></li>
+            </ul>
+        </aside>
+        <section class="main-content">
+            <h1>مرحبا بك في صفحة الأقسام</h1>
+            <p>اختر القسم المناسب من القائمة الجانبية لاستعراض المنتجات المتوفرة لدينا.</p>
+        </section>
+    </div>
+</body>
+</html>

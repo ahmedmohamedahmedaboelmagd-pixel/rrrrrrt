@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإلكترونيات - متجر على الإنترنت</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    </head>
+<body>
+    <header>
+        <h1>متجر على الإنترنت</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">الرئيسية</a></li>
+                <li><a href="electronics.html">الإلكترونيات</a></li>
+                <li><a href="clothing.html">الملابس</a></li>
+                <li><a href="health.html">الصحة</a></li>
+                <li><a href="beauty.html">الجمال</a></li>
+                <li><a href="../cart/cart.html">السلة</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <h1>قسم الإلكترونيات</h1>
+        <div id="electronicsProducts" class="product-list">
+            </div>
+        <script>
+        function renderElectronicsProducts() {
+            // ملاحظة: تم تعديل هذا الكود ليتطابق مع الـ fetch() في ملف product.js
+            fetch('../products.json')
+                .then(function(response) { return response.json(); })
+                .then(function(productsByCat) {
+                    var list = document.getElementById('electronicsProducts');
+                    var products = productsByCat['electronics'] || [];
+                    if (!products.length) {
+                        list.innerHTML = '<div style="text-align:center; color:#64748b; width:100%; padding: 20px;">لا يوجد منتجات في قسم الإلكترونيات.</div>';
+                        return;
+                    }
+                    var html = '';
+                    products.forEach(function(p) {
+                        html += '<div class="product-item">';
+                        html += '<img src="' + p.image + '" alt="' + p.name + '" onerror="this.onerror=null;this.src=\'https://via.placeholder.com/280x200?text=Image+Not+Found\'">';
+                        html += '<h3>' + p.name + '</h3>';
+                        html += '<p>' + p.desc + '</p>';
+                        html += '<div style="color:#059669; font-weight:600; margin-bottom:10px;">' + p.price + ' ج.م</div>';
+                        html += '<a href="../product/detail.html?id=' + p.id + '">عرض التفاصيل</a>';
+                        html += '</div>';
+                    });
+                    list.innerHTML = html;
+                })
+                .catch(function() {
+                    list.innerHTML = '<div style="text-align:center; color:#dc2626; width:100%; padding: 20px;">تعذر جلب المنتجات من السيرفر.</div>';
+                });
+        }
+        window.addEventListener('DOMContentLoaded', renderElectronicsProducts);
+    </script>
+    </main>
+    <div class="footer">
+        <p>&copy; 2023 متجر على الإنترنت. جميع الحقوق محفوظة.</p>
+    </div>
+    <script src="../js/product.js"></script>
+</body>
+</html>

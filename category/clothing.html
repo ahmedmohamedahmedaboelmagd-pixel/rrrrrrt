@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Category - Online Store</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* ... (Your original CSS styles remain here) ... */
+        body {
+            background: linear-gradient(120deg, #f8fafc 0%, #dbeafe 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+        }
+        header {
+            background: #2563eb;
+            color: #fff;
+            padding: 28px 0 16px 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05em;
+            padding: 7px 16px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        nav ul li a:hover {
+            background: #1e40af;
+        }
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: right;
+        }
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .product-item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            width: 300px;
+            text-align: center;
+        }
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .product-item h2 {
+            color: #2563eb;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+        .product-item p {
+            color: #475569;
+            margin-bottom: 15px;
+        }
+        .product-item a {
+            background: #2563eb;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+        .product-item a:hover {
+            background: #1e40af;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="file:///C:/Users/Mohamed%20Faisal/Desktop/ne%20w/nhcj/online-store/src/index.html">الرئيسية</a></li>
+                <li><a href="electronics.html">Electronics</a></li>
+                <li><a href="clothing.html">Clothing</a></li>
+                <li><a href="health.html">Health</a></li>
+                <li><a href="beauty.html">Beauty</a></li>
+                <li><a href="../cart/cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1 style="color:#2563eb; text-align:center; margin-bottom:30px; font-size:2.2em;">قسم الملابس</h1>
+        <div id="clothingProducts" class="product-list"></div>
+        <script>
+        // عرض منتجات الملابس من localStorage
+        function renderClothingProducts() {
+            var productsByCat = JSON.parse(localStorage.getItem('productsByCat') || '{}');
+            var products = productsByCat['clothing'] || [];
+            var list = document.getElementById('clothingProducts');
+            if (!products.length) {
+                list.innerHTML = '<div style="text-align:center; color:#64748b;">لا يوجد منتجات في قسم الملابس.</div>';
+                return;
+            }
+            var html = '';
+            products.forEach(function(p) {
+                html += '<div class="product-item">';
+                html += '<img src="' + p.image + '" alt="' + p.name + '" style="width:100%; border-radius:8px; margin-bottom:12px;">';
+                html += '<h3 style="color:#2563eb;">' + p.name + '</h3>';
+                html += '<p style="color:#334155;">' + p.desc + '</p>';
+                html += '<div style="color:#059669; font-weight:600;">' + p.price + ' ج.م</div>';
+                html += '</div>';
+            });
+            list.innerHTML = html;
+        }
+        window.addEventListener('DOMContentLoaded', renderClothingProducts);
+        </script>
+    </main>
+    <footer>
+        <p>&copy; 2023 Online Store. All rights reserved.</p>
+    </footer>
+    <script src="../js/main.js"></script>
+</body>
+</html>

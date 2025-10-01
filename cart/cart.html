@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ar"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    </head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">الرئيسية</a></li>
+                <li><a href="../category/electronics.html">Electronics</a></li>
+                <li><a href="../category/clothing.html">Clothing</a></li>
+                <li><a href="../category/health.html">Health</a></li>
+                <li><a href="../category/beauty.html">Beauty</a></li>
+                <li><a href="../cart/cart.html">Cart</a></li>
+            </ul>
+        </nav>
+        <h1>🛒 سلة التسوق الخاصة بك</h1>
+    </header>
+    <main class="cart">
+        <section id="cart-items">
+            <h2>العناصر في السلة</h2>
+            <ul id="cart-list">
+                </ul>
+        </section>
+        <section id="cart-summary">
+            <div id="total-price" style="font-size: 1.5em; font-weight: bold; color: #2563eb; margin-bottom: 20px;">
+                الإجمالي: $0.00
+            </div>
+            <button id="checkout-button" style="background: #2563eb; color: #fff; padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1em; transition: background 0.2s;">
+                الاستمرار للدفع
+            </button>
+        </section>
+    </main>
+    <div class="footer">
+        <p>&copy; 2023 Online Store. All rights reserved.</p>
+    </div>
+    <script src="../js/cart.js"></script>
+</body>
+</html>

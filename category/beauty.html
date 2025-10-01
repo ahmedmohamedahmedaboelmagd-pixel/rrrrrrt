@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Products - Online Store</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(120deg, #f8fafc 0%, #bbf7d0 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+        }
+        header {
+            background: #059669;
+            color: #fff;
+            padding: 28px 0 16px 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(5,150,105,0.08);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05em;
+            padding: 7px 16px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        nav ul li a:hover {
+            background: #047857;
+        }
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: right;
+        }
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .product-item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            width: 300px;
+            text-align: center;
+        }
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            height: 200px; /* لتوحيد حجم الصورة */
+            object-fit: cover; /* لضمان عدم تشوه الصورة */
+        }
+        .product-item h2 {
+            color: #059669;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+        .product-item p {
+            color: #475569;
+            margin-bottom: 15px;
+        }
+        .product-item a {
+            background: #059669;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+        .product-item a:hover {
+            background: #047857;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">الرئيسية</a></li>
+                <li><a href="electronics.html">الكترونيات</a></li>
+                <li><a href="clothing.html">Clothing</a></li>
+                <li><a href="health.html">Health</a></li>
+                <li><a href="beauty.html">Beauty</a></li>
+                <li><a href="../cart/cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>منتجات الصحة والجمال </h1>
+        <section id="healthProducts" class="product-list">
+            </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Online Store. All rights reserved.</p>
+    </footer>
+    <script>
+        // عرض منتجات الصحة من localStorage بنفس تنسيق الصفحة
+        function renderHealthProducts() {
+            var productsByCat = JSON.parse(localStorage.getItem('productsByCat') || '{}');
+            // التأكد من أن المفتاح المستخدم هو 'health'
+            var products = productsByCat['health'] || []; 
+            var list = document.getElementById('healthProducts');
+            
+            if (!list) return;
+
+            if (products.length === 0) {
+                list.innerHTML = '<div style="text-align:center; color:#64748b; padding: 20px; width: 100%;">لا يوجد منتجات في قسم الصحة.</div>';
+                return;
+            }
+
+            var html = '';
+            products.forEach(function(p) {
+                html += '<div class="product-item">';
+                html += '<img src="' + p.image + '" alt="' + p.name + '">';
+                html += '<h2>' + p.name + '</h2>';
+                html += '<p>' + p.desc + '</p>';
+                // تنسيق السعر الموحد بالدولار
+                html += '<div style="color:#059669; font-weight:600; margin-bottom:10px;">$' + parseFloat(p.price).toFixed(2) + '</div>';
+                html += '<a href="../product/detail.html?id=' + p.id + '">عرض التفاصيل</a>';
+                html += '</div>';
+            });
+            list.innerHTML = html;
+        }
+        window.addEventListener('DOMContentLoaded', renderHealthProducts);
+    </script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
